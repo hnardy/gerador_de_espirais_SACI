@@ -34,6 +34,8 @@ def ligar():
                 # x.append(math.cos(ang) * rad)
                 # y.append(math.sin(ang) * rad)
 
+                turtle.title(f"desenhando: {f*repeats/100}%")
+
                 my_pen.pencolor(colors[f % len(colors)])
                 my_pen.forward(lin)
                 my_pen.left(angmod)
@@ -43,6 +45,7 @@ def ligar():
                 #print(f"ang{angmod} linmod{linmod}, lin{lin}, Repeats{f}")
 
             win.geometry("400x400")
+            turtle.title(f"pronto! ângulo: {angmod} repetições: {repeats} crescimento {linmod}")
             turtle.done()
       except:
           sys.exit()
