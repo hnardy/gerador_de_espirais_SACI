@@ -5,6 +5,7 @@ cor= list()
 def addbranco():
     cor.append("white")
 
+
 def addvermelho():
     cor.append("red" )
 
@@ -35,8 +36,15 @@ def addmarrom():
 def addvioleta():
     cor.append("violet")
 
+def addpreto():
+    cor.append("black")
 
+
+def apagar():
+    for c in range(0,len(cor)) :
+        cor.pop()
 
 def getcores():
-
     return (cor)
+
+

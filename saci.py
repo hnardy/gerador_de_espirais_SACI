@@ -1,3 +1,4 @@
+
 from tkinter import *
 import turtle
 import sys
@@ -122,10 +123,9 @@ def ligar():
    # bot = Button(win, text="fechar", command=fechar)
    # bot.grid(column=6, row=20)
 
+
     l5 = Label(win, text="seleção de cores")
     l5.grid(column=5, row= 22)
-
-
 
     b_branco = Button(win,text="   ",command=crs.addbranco,background="white")
     b_branco.grid(column= 10, row= 2)
@@ -160,15 +160,22 @@ def ligar():
     b_violeta = Button(win, text="   ", command=crs.addvioleta, background="violet")
     b_violeta.grid(column=10, row=22)
 
+    b_preto = Button(win, text="   ", command=crs.addpreto, background="black")
+    b_preto.grid(column=10, row=22)
 
 
-
-
-
-
-
+    b_apagarcores = Button(win,text="reiniciar cores",command=crs.apagar)
+    b_apagarcores.grid(column=10, row=24)
 
     win.mainloop()
+
+
+
+
+
+
+
+
 
 
 #start()
