@@ -2,6 +2,7 @@ from tkinter import *
 import turtle
 import sys
 import os
+import cores_saci as crs
 
 def start():
 
@@ -24,7 +25,9 @@ def start():
 
 
 def ligar():
-
+    cores = []
+    def adcor(c):
+        cores.append(c)
 
     def fechar():
         win.destroy()
@@ -44,7 +47,10 @@ def ligar():
             turtle.bgcolor("black")
 
             my_pen.speed(velocity)
-            pencolors = ["red", "turquoise", "green", "pink", "blue", "yellow", "purple", "white"]
+            pencolors = crs.getcores()
+
+            if pencolors == []:
+                pencolors.append("white")
 
             my_pen.speed(velocity)
 
@@ -119,10 +125,50 @@ def ligar():
     l5 = Label(win, text="seleção de cores")
     l5.grid(column=5, row= 22)
 
-    b_preto = Button(win,)
+
+
+    b_branco = Button(win,text="   ",command=crs.addbranco,background="white")
+    b_branco.grid(column= 10, row= 2)
+
+    b_vermelho = Button(win, text="   ", command=crs.addvermelho, background="red")
+    b_vermelho.grid(column=10, row=4)
+
+    b_azul = Button(win, text="   ", command=crs.addazul,background="blue")
+    b_azul.grid(column=10, row=6)
+
+    b_rosa = Button(win, text="   ", command=crs.addrosa, background="pink")
+    b_rosa.grid(column=10, row=8)
+
+    b_verde = Button(win, text="   ", command=crs.addverde, background="green")
+    b_verde.grid(column=10, row=10)
+
+    b_amarelo = Button(win, text="   ", command=crs.addamarelo, background="yellow")
+    b_amarelo.grid(column=10, row=12)
+
+    b_roxo = Button(win, text="   ", command=crs.addroxo, background="purple")
+    b_roxo.grid(column=10, row=14)
+
+    b_turquesa = Button(win, text="   ", command=crs.addturquesa, background="turquoise")
+    b_turquesa.grid(column=10, row=16)
+
+    b_laranja = Button(win, text="   ", command=crs.addlaranja, background="orange")
+    b_laranja.grid(column=10, row=18)
+
+    b_marrom = Button(win, text="   ", command=crs.addmarrom, background="brown")
+    b_marrom.grid(column=10, row=20)
+
+    b_violeta = Button(win, text="   ", command=crs.addvioleta, background="violet")
+    b_violeta.grid(column=10, row=22)
+
+
+
+
+
+
+
+
 
     win.mainloop()
-
 
 
 #start()
