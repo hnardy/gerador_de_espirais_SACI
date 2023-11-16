@@ -1,37 +1,42 @@
-
+import tkinter
 from tkinter import *
 import turtle
 import sys
 import os
 import cores_saci as crs
 
+
+
+tamanho_janela= "400x450"
+
+
 def start():
 
     pasta = os.path.dirname(__file__)
 
+
+
     op = Tk()
     op.grid()
-    op.geometry("1200x720")
+    op.geometry("1400x720")
     op.title("SACI")
 
     imagem_blender = PhotoImage(file=pasta+"\\img1.gif")
     foto = Label(op, image=imagem_blender)
     foto.pack()
     stbt = Button(op,text="INICIAR", command=op.destroy)
-    stbt.place(x=600,y=650)
+    stbt.place(x=700,y=650)
     op.mainloop()
-    
 
 
 
 
 def ligar():
-    cores = []
-    def adcor(c):
-        cores.append(c)
 
     def fechar():
         win.destroy()
+
+
 
     def ligar_tartaruga():
         try:
@@ -74,16 +79,20 @@ def ligar():
                 lin += linmod
                 # print(f"ang{angmod} linmod{linmod}, lin{lin}, Repeats{f}")
 
-            win.geometry("400x400")
+            win.geometry(tamanho_janela)
             turtle.title(f"pronto! ângulo: {angmod} repetições: {repeats} crescimento hori.{linmod} crescimento vert.{fator}")
             turtle.done()
         except:
             sys.exit()
+    def atualizar(event):
+       text_box.delete(1.0,"end")
+       text_box.insert("end",crs.getamostra())
+
 
     win = Tk()
-    win.grid()
-    win.geometry("400x400")
-    win.title("SACI)")
+    #win.grid()
+    win.geometry(tamanho_janela)
+    win.title("SACI")
 
     l1 = Label(win, text="escolha o ângulo")
     l1.grid(column=5, row=0)
@@ -120,61 +129,55 @@ def ligar():
     bot = Button(win, text="iniciar", command=ligar_tartaruga)
     bot.grid(column=5, row=20)
 
-   # bot = Button(win, text="fechar", command=fechar)
-   # bot.grid(column=6, row=20)
-
-
-    l5 = Label(win, text="seleção de cores")
-    l5.grid(column=5, row= 22)
-
     b_branco = Button(win,text="   ",command=crs.addbranco,background="white")
-    b_branco.grid(column= 10, row= 2)
+    b_branco.grid(column= 6, row= 2)
 
     b_vermelho = Button(win, text="   ", command=crs.addvermelho, background="red")
-    b_vermelho.grid(column=10, row=4)
+    b_vermelho.grid(column=6, row=4)
 
     b_azul = Button(win, text="   ", command=crs.addazul,background="blue")
-    b_azul.grid(column=10, row=6)
+    b_azul.grid(column=6, row=6)
 
     b_rosa = Button(win, text="   ", command=crs.addrosa, background="pink")
-    b_rosa.grid(column=10, row=8)
+    b_rosa.grid(column=6, row=8)
 
     b_verde = Button(win, text="   ", command=crs.addverde, background="green")
-    b_verde.grid(column=10, row=10)
+    b_verde.grid(column=6, row=10)
 
     b_amarelo = Button(win, text="   ", command=crs.addamarelo, background="yellow")
-    b_amarelo.grid(column=10, row=12)
+    b_amarelo.grid(column=6, row=12)
 
     b_roxo = Button(win, text="   ", command=crs.addroxo, background="purple")
-    b_roxo.grid(column=10, row=14)
+    b_roxo.grid(column=6, row=14)
 
     b_turquesa = Button(win, text="   ", command=crs.addturquesa, background="turquoise")
-    b_turquesa.grid(column=10, row=16)
+    b_turquesa.grid(column=6, row=16)
 
     b_laranja = Button(win, text="   ", command=crs.addlaranja, background="orange")
-    b_laranja.grid(column=10, row=18)
+    b_laranja.grid(column=6, row=18)
 
     b_marrom = Button(win, text="   ", command=crs.addmarrom, background="brown")
-    b_marrom.grid(column=10, row=20)
+    b_marrom.grid(column=6, row=20)
 
     b_violeta = Button(win, text="   ", command=crs.addvioleta, background="violet")
-    b_violeta.grid(column=10, row=22)
+    b_violeta.grid(column=6, row=22)
 
     b_preto = Button(win, text="   ", command=crs.addpreto, background="black")
-    b_preto.grid(column=10, row=22)
+    b_preto.grid(column=6, row=22)
+
 
 
     b_apagarcores = Button(win,text="reiniciar cores",command=crs.apagar)
-    b_apagarcores.grid(column=10, row=24)
+    b_apagarcores.grid(column=5, row=32)
 
+    win.bind("<Motion>", atualizar)
+
+    l5 = Label(win, text="seleção de cores")
+    l5.grid(column=5, row=29)
+
+    text_box = Text(win,width=45,height=2,wrap='word',padx=10)
+    text_box.grid(column=5,row=30)
     win.mainloop()
-
-
-
-
-
-
-
 
 
 
