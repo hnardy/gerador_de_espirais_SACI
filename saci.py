@@ -1,47 +1,39 @@
-import tkinter
 from tkinter import *
 import turtle
 import sys
 import os
 import cores_saci as crs
-
-
-
-tamanho_janela= "400x450"
+from play import *
+tamanho_janela = "400x450"
 
 
 def start():
-
     pasta = os.path.dirname(__file__)
-
-
 
     op = Tk()
     op.grid()
-    op.geometry("1400x720")
+    op.geometry("1250x720")
     op.title("SACI")
 
-    imagem_blender = PhotoImage(file=pasta+"\\img1.gif")
+    imagem_blender = PhotoImage(file='../img1.gif')
     foto = Label(op, image=imagem_blender)
     foto.pack()
-    stbt = Button(op,text="INICIAR", command=op.destroy)
-    stbt.place(x=700,y=650)
+
+    imagem_blender2 = PhotoImage(file='../img2.gif')
+    stbt = Button(op,command=op.destroy ,width=190, height=55,image=imagem_blender2,borderwidth=0)
+    stbt.place(x=510, y=542)
+    stbt.focus_displayof()
     op.mainloop()
 
 
-
-
 def ligar():
-
     def fechar():
         win.destroy()
-
-
 
     def ligar_tartaruga():
         try:
             turtle.clearscreen()
-            lin = 0
+            lin = 10
             angmod = int(a.get())
             linmod = float(b.get())
             repeats = int(c.get())
@@ -55,17 +47,17 @@ def ligar():
             my_pen.speed(velocity)
             pencolors = crs.getcores()
 
-            if pencolors == []:
-                pencolors.append("white")
+            play()
 
+            if pencolors == []:
+                crs.addbranco()
+                pencolors = crs.getcores()
             my_pen.speed(velocity)
 
             win.geometry("0x0")
 
             for f in range(0, repeats):
-                espe+= fator
-
-
+                espe += fator
 
                 # x.append(math.cos(ang) * rad)
                 # y.append(math.sin(ang) * rad)
@@ -80,17 +72,22 @@ def ligar():
                 # print(f"ang{angmod} linmod{linmod}, lin{lin}, Repeats{f}")
 
             win.geometry(tamanho_janela)
-            turtle.title(f"pronto! ângulo: {angmod} repetições: {repeats} crescimento hori.{linmod} crescimento vert.{fator}")
+            turtle.title(
+                f"pronto! ângulo: {angmod} repetições: {repeats} crescimento hori.{linmod} crescimento vert.{fator}")
+
+
+            stopmusic()
             turtle.done()
+
         except:
             sys.exit()
-    def atualizar(event):
-       text_box.delete(1.0,"end")
-       text_box.insert("end",crs.getamostra())
 
+    def atualizar(event):
+        text_box.delete(1.0, "end")
+        text_box.insert("end", crs.getamostra())
 
     win = Tk()
-    #win.grid()
+    # win.grid()
     win.geometry(tamanho_janela)
     win.title("SACI")
 
@@ -124,18 +121,16 @@ def ligar():
     e = Spinbox(win, to=1, increment=0.01)
     e.grid(column=5, row=18)
 
-
-
     bot = Button(win, text="iniciar", command=ligar_tartaruga)
     bot.grid(column=5, row=20)
 
-    b_branco = Button(win,text="   ",command=crs.addbranco,background="white")
-    b_branco.grid(column= 6, row= 2)
+    b_branco = Button(win, text="   ", command=crs.addbranco, background="white")
+    b_branco.grid(column=6, row=2)
 
     b_vermelho = Button(win, text="   ", command=crs.addvermelho, background="red")
     b_vermelho.grid(column=6, row=4)
 
-    b_azul = Button(win, text="   ", command=crs.addazul,background="blue")
+    b_azul = Button(win, text="   ", command=crs.addazul, background="blue")
     b_azul.grid(column=6, row=6)
 
     b_rosa = Button(win, text="   ", command=crs.addrosa, background="pink")
@@ -165,9 +160,7 @@ def ligar():
     b_preto = Button(win, text="   ", command=crs.addpreto, background="black")
     b_preto.grid(column=6, row=22)
 
-
-
-    b_apagarcores = Button(win,text="reiniciar cores",command=crs.apagar)
+    b_apagarcores = Button(win, text="reiniciar cores", command=crs.apagar)
     b_apagarcores.grid(column=5, row=32)
 
     win.bind("<Motion>", atualizar)
@@ -175,11 +168,10 @@ def ligar():
     l5 = Label(win, text="seleção de cores")
     l5.grid(column=5, row=29)
 
-    text_box = Text(win,width=45,height=2,wrap='word',padx=10)
-    text_box.grid(column=5,row=30)
+    text_box = Text(win, width=45, height=2, wrap='word', padx=10)
+    text_box.grid(column=5, row=30)
     win.mainloop()
 
 
-
-#start()
+start()
 ligar()

@@ -43,9 +43,11 @@ def addpreto():
     amostra.append("preto")
 
 def apagar():
-    for c in range(0,len(cor)) :
-        cor.pop()
-        amostra.pop()
+
+    if len(cor) > 0:
+        for c in range(0,len(cor)) :
+            cor.pop()
+            amostra.pop()
 
 def getcores():
     return (cor)
